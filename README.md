@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐾 PawVision AI
 
-## Getting Started
+## AI-Powered Dog & Cat Breed Classification
 
-First, run the development server:
+PawVision AI is a web-based artificial intelligence application that analyzes uploaded pet images and predicts dog and cat breeds using real machine-learning models.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+It combines an interactive dashboard with AI-powered image classification, confidence scores, prediction history, analytics, and reports.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🐶 Real dog breed classification
+- 🐱 Real cat breed classification
+- 🤖 AI-powered image prediction
+- 📊 Confidence score for predictions
+- 📈 Prediction analytics
+- 📋 Prediction history and reports
+- 📷 Image upload and preview
+- 🔐 Login and authentication
+- 🎨 Modern responsive dashboard
+- ⚡ FastAPI backend
+- 💻 Next.js web application
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 AI Models
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+PawVision AI uses real pre-trained machine-learning models:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Dog Breed Model:** Dog-Breed-120
+- **Cat Breed Model:** Cat-Breed-60-Classes
+- **Animal Classification:** Dog/Cat classification
 
-## Deploy on Vercel
+The system analyzes the uploaded image and routes it to the appropriate breed classification model.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏗️ How It Works
+
+```text
+Upload Pet Image
+       ↓
+Dog / Cat Detection
+       ↓
+ ┌───────────────┐
+ │               │
+Dog             Cat
+ ↓               ↓
+Dog Breed       Cat Breed
+Model           Model
+ ↓               ↓
+Breed +         Breed +
+Confidence      Confidence
+## 🛠️ Technology Stack
+
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Recharts
+
+### Backend
+- Python
+- FastAPI
+- Uvicorn
+- Pillow
+
+### Machine Learning
+- PyTorch
+- Hugging Face Transformers
+- Pre-trained AI models
+## 📁 Project Structure
+
+```text
+pawvision-ai/
+│
+├── app/
+├── backend/
+│   └── main.py
+├── components/
+├── lib/
+├── public/
+├── package.json
+├── README.md
+└── .gitignore
+## 🎯 Project Objective
+
+The objective of PawVision AI is to demonstrate how artificial intelligence, machine learning, and modern web technologies can be combined to create an interactive pet breed classification platform.
+## 👩‍💻 Developer
+
+**Shreemata Bhat**
+
+Computer Science & Engineering Student
+
+---
+
+⭐ If you find PawVision AI interesting, consider giving the repository a star!
