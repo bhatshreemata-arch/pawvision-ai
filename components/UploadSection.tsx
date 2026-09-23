@@ -4,18 +4,28 @@ import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { detectBreed } from '@/lib/breedDetection';
 
+interface Prediction {
+  breed: string;
+  confidence: number;
+  type: 'dog' | 'cat';
+  image: string;
+  timestamp: string;
+}
+
 interface UploadSectionProps {
-  onPrediction: (prediction: any) => void;
+  onPrediction: (prediction: Prediction) => void;
   onImageUpload: (image: string) => void;
 }
 
 export default function UploadSection({ onPrediction, onImageUpload }: UploadSectionProps) {
   const [image, setImage] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = (file: File) => {
+    setFile(file);
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageData = e.target?.result as string;
@@ -45,35 +55,34 @@ export default function UploadSection({ onPrediction, onImageUpload }: UploadSec
   };
 
   const handlePredict = async () => {
-    if (!image || loading) return;
+    if (!image || !file || loading) return;
     
     setLoading(true);
 
-    // Simulate API call with realistic delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    const prediction = detectBreed(image);
-    const predictionData = {
-      breed: prediction.breed,
-      confidence: prediction.confidence,
-      type: prediction.type,
-      image: image,
-      timestamp: new Date().toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    };
-
-    onPrediction(predictionData);
-    setLoading(false);
+    try {
+      const prediction = await detectBreed(file);
+      onPrediction({
+        breed: prediction.breed,
+        confidence: prediction.confidence,
+        type: prediction.type,
+        image,
+        timestamp: new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleClear = () => {
     setImage(null);
-    fileInputRef.current && (fileInputRef.current.value = '');
+    setFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   return (
